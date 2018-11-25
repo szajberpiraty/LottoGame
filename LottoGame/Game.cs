@@ -18,13 +18,18 @@ namespace LottoGame
         private int szamlalo = 0;
         private int[] tippek;
         private int[] nyeroszamok;
+        private int sorSzam;
+        private int oszlopSzam;
         private int talalat=0;
         private Random nyeroszam = new Random();
 
-        public Game(MainWindow mainwindow,int hanyszam)
+        public Game(MainWindow mainwindow,int hanyszam,int sor,int oszlop)
         {
             this.mainwindow = mainwindow;
             this.hanySzam = hanyszam;
+            this.sorSzam = sor;
+            this.oszlopSzam = oszlop;
+
             tippek = new int[hanySzam];
             nyeroszamok = new int[hanySzam];
             mainwindow.buttonUjJatek.Click += UjJatek;
@@ -34,7 +39,7 @@ namespace LottoGame
         //Most nem, de szépre megoldani, hogy mennyi számmal játszunk
         public void Start()
         {
-            ButtonGrid(9, 10);
+            ButtonGrid(9, 5);
             szamlalo = 0;
             mainwindow.buttonSorsolas.IsEnabled = false;
             mainwindow.buttonUjJatek.IsEnabled = false;
@@ -65,14 +70,14 @@ namespace LottoGame
                 {
                     Button gomb = new Button();
                     gomb.Content = buttonNumber;
-                    //gomb.Content = i + j.ToString();
+                    
                     buttonNumber++;
                     gomb.Padding = new Thickness(5);
                     gomb.Margin = new Thickness(5);
                     gomb.MinWidth = 30;
                     gomb.MinHeight = 30;
                     gomb.Click += buttonClick;
-                    //gomb.Click += szamlaloNovel;
+                    
 
                     buttonGrid.Children.Add(gomb);
                     Grid.SetRow(gomb, i);
@@ -121,15 +126,15 @@ namespace LottoGame
         private void Sorsolas()
         {
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < hanySzam; i++)
             {
 
-                var temp = nyeroszam.Next(1, 91);
+                var temp = nyeroszam.Next(1, (sorSzam*oszlopSzam)+1);
 
                 //figyelni, hogy ne legyen ugyanaz a nyerőszám
                 while (Array.IndexOf(nyeroszamok, temp) > -1)
                 {
-                    temp = nyeroszam.Next(1, 91);
+                    temp = nyeroszam.Next(1, (sorSzam * oszlopSzam) + 1);
                 }
                 nyeroszamok[i] = temp;
 
@@ -193,9 +198,9 @@ namespace LottoGame
         {
             mainwindow.tippGombok.Children.Clear();
             mainwindow.nyeroSzamok.Children.Clear();
-            Debug.WriteLine("tipphossz{0}",tippek.Length);
+            
             tippek = new int[hanySzam];
-            Debug.WriteLine("tipphossz{0}", tippek.Length);
+            
             nyeroszamok = new int[hanySzam];
             
             Start();
@@ -204,10 +209,6 @@ namespace LottoGame
         }
         
 
-        private void szamlaloNovel(object sender, RoutedEventArgs e)
-        {
-            szamlalo +=1;
-            Debug.WriteLine(szamlalo);
-        }
+       
     }
 }
