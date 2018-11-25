@@ -79,7 +79,7 @@ namespace LottoGame
 
                 }
             }
-            mainwindow.mainGrid.Children.Add(buttonGrid);
+            mainwindow.tippGombok.Children.Add(buttonGrid);
             
         }
         private void buttonClick(object sender,RoutedEventArgs e)
@@ -158,27 +158,32 @@ namespace LottoGame
         private void EredmenyKiemeles()
 
         {
-           
-           
-            foreach (Button ch in mainwindow.mainGrid.Children)
+
+
+            foreach (Grid gr in mainwindow.tippGombok.Children)
             {
 
-                if (Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
+                foreach (Button ch in gr.Children)
                 {
-
-                    ch.Foreground = Brushes.DarkBlue;
-                    ch.Background = Brushes.Green;
-
-                }
-                if (Array.IndexOf(tippek, Convert.ToInt32(ch.Content)) > -1 && Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
-                {
-
-                    ch.Foreground = Brushes.DarkBlue;
-                    ch.Background = Brushes.Red;
 
                 }
 
-                //allapot.Text+=ch.Content;
+                //if (Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
+                //{
+
+                //    ch.Foreground = Brushes.DarkBlue;
+                //    ch.Background = Brushes.Green;
+
+                //}
+                //if (Array.IndexOf(tippek, Convert.ToInt32(ch.Content)) > -1 && Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
+                //{
+
+                //    ch.Foreground = Brushes.DarkBlue;
+                //    ch.Background = Brushes.Red;
+
+                //}
+
+
 
             }
         }
