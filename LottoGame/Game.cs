@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
 using System.Diagnostics;
+using System.Threading;
 
 namespace LottoGame
 {
@@ -37,6 +38,7 @@ namespace LottoGame
             mainwindow.buttonUjJatek.IsEnabled = false;
             mainwindow.buttonSorsolas.Click += sorsolasClick;
         }
+        //Annyi rácsból áll a grid, amennyi gomb van
         public void ButtonGrid(int sor,int oszlop)
         {
             Grid buttonGrid = new Grid();
@@ -133,6 +135,20 @@ namespace LottoGame
 
             }
             Array.Sort(nyeroszamok);
+
+            //Gombokat csinálunk a nyerőszámokból, és a wrappanel-re tesszük
+            for (int i = 0; i < nyeroszamok.Length; i++)
+            {
+                Button nyeroGomb = new Button();
+                nyeroGomb.Content = nyeroszamok[i].ToString();
+                nyeroGomb.Padding = new Thickness(5);
+                nyeroGomb.Margin = new Thickness(5);
+                nyeroGomb.MinHeight = 40;
+                nyeroGomb.MinWidth = 40;
+                mainwindow.nyeroSzamok.Children.Add(nyeroGomb);
+                
+            }
+
             //Csak debug
             for (int i = 0; i < nyeroszamok.Length; i++)
             {
@@ -140,8 +156,31 @@ namespace LottoGame
             }
         }
         private void EredmenyKiemeles()
-        {
 
+        {
+           
+           
+            foreach (Button ch in mainwindow.mainGrid.Children)
+            {
+
+                if (Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
+                {
+
+                    ch.Foreground = Brushes.DarkBlue;
+                    ch.Background = Brushes.Green;
+
+                }
+                if (Array.IndexOf(tippek, Convert.ToInt32(ch.Content)) > -1 && Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
+                {
+
+                    ch.Foreground = Brushes.DarkBlue;
+                    ch.Background = Brushes.Red;
+
+                }
+
+                //allapot.Text+=ch.Content;
+
+            }
         }
 
         private void szamlaloNovel(object sender, RoutedEventArgs e)

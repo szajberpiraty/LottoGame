@@ -21,6 +21,7 @@
             <Button x:Name="buttonUjJatek" Margin="10" Content="Új játék"/>
             </StackPanel>
         </Grid>
+        <WrapPanel x:Name="nyeroSzamok" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" />
 
     </Grid>
 </Window>
