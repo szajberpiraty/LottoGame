@@ -24,7 +24,7 @@ namespace LottoGame
         public MainWindow()
         {
             InitializeComponent();
-            game = new Game(this);
+            game = new Game(this,5);
             game.Start();
         }
     }
