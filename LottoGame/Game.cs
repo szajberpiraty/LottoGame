@@ -27,6 +27,8 @@ namespace LottoGame
             this.hanySzam = hanyszam;
             tippek = new int[hanySzam];
             nyeroszamok = new int[hanySzam];
+            mainwindow.buttonUjJatek.Click += UjJatek;
+            mainwindow.buttonSorsolas.Click += sorsolasClick;
         }
 
         //Most nem, de szépre megoldani, hogy mennyi számmal játszunk
@@ -36,7 +38,7 @@ namespace LottoGame
             szamlalo = 0;
             mainwindow.buttonSorsolas.IsEnabled = false;
             mainwindow.buttonUjJatek.IsEnabled = false;
-            mainwindow.buttonSorsolas.Click += sorsolasClick;
+           
         }
         //Annyi rácsból áll a grid, amennyi gomb van
         public void ButtonGrid(int sor,int oszlop)
@@ -183,7 +185,24 @@ namespace LottoGame
 
                
             }
+            mainwindow.buttonUjJatek.IsEnabled = true;
+           
         }
+
+        private void UjJatek(object sender, RoutedEventArgs e)
+        {
+            mainwindow.tippGombok.Children.Clear();
+            mainwindow.nyeroSzamok.Children.Clear();
+            Debug.WriteLine("tipphossz{0}",tippek.Length);
+            tippek = new int[hanySzam];
+            Debug.WriteLine("tipphossz{0}", tippek.Length);
+            nyeroszamok = new int[hanySzam];
+            
+            Start();
+
+
+        }
+        
 
         private void szamlaloNovel(object sender, RoutedEventArgs e)
         {
