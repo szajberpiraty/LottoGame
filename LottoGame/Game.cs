@@ -39,7 +39,7 @@ namespace LottoGame
         //Most nem, de szépre megoldani, hogy mennyi számmal játszunk
         public void Start()
         {
-            ButtonGrid(9, 5);
+            ButtonGrid(sorSzam, oszlopSzam);
             szamlalo = 0;
             mainwindow.buttonSorsolas.IsEnabled = false;
             mainwindow.buttonUjJatek.IsEnabled = false;
