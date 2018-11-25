@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LottoGame"
         mc:Ignorable="d"
-        Title="Lottójáték" Height="600" Width="800">
+        Title="Lottójáték" Height="700" Width="800">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>

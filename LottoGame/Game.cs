@@ -18,6 +18,7 @@ namespace LottoGame
             this.mainwindow = mainwindow;
         }
 
+        //Most nem, de szépre megoldani, hogy mennyi számmal játszunk
         public void Start()
         {
             ButtonGrid(9, 10);
@@ -40,16 +41,18 @@ namespace LottoGame
             }
             //Gombok létrehozása, hozzáadása
             var buttonNumber = 1;
-            for (int i = 0; i < oszlop; i++)
+            for (int i = 0; i < sor; i++)
             {
-                for (int j = 0; j < sor; j++)
+                for (int j = 0; j < oszlop; j++)
                 {
                     Button gomb = new Button();
                     gomb.Content = buttonNumber;
+                    //gomb.Content = i + j.ToString();
                     buttonNumber++;
                     gomb.Padding = new Thickness(5);
                     gomb.Margin = new Thickness(5);
                     gomb.MinWidth = 30;
+                    gomb.MinHeight = 30;
                     buttonGrid.Children.Add(gomb);
                     Grid.SetRow(gomb, i);
                     Grid.SetColumn(gomb,j);
