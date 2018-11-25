@@ -181,23 +181,7 @@ namespace LottoGame
                     }
                 }
 
-                //if (Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
-                //{
-
-                //    ch.Foreground = Brushes.DarkBlue;
-                //    ch.Background = Brushes.Green;
-
-                //}
-                //if (Array.IndexOf(tippek, Convert.ToInt32(ch.Content)) > -1 && Array.IndexOf(nyeroszamok, Convert.ToInt32(ch.Content)) > -1)
-                //{
-
-                //    ch.Foreground = Brushes.DarkBlue;
-                //    ch.Background = Brushes.Red;
-
-                //}
-
-
-
+               
             }
         }
 
