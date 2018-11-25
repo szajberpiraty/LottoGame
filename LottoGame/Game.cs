@@ -18,6 +18,7 @@ namespace LottoGame
         private int[] tippek;
         private int[] nyeroszamok;
         private int talalat=0;
+        private Random nyeroszam = new Random();
 
         public Game(MainWindow mainwindow,int hanyszam)
         {
@@ -32,6 +33,9 @@ namespace LottoGame
         {
             ButtonGrid(9, 10);
             szamlalo = 0;
+            mainwindow.buttonSorsolas.IsEnabled = false;
+            mainwindow.buttonUjJatek.IsEnabled = false;
+            mainwindow.buttonSorsolas.Click += sorsolasClick;
         }
         public void ButtonGrid(int sor,int oszlop)
         {
@@ -64,7 +68,7 @@ namespace LottoGame
                     gomb.MinWidth = 30;
                     gomb.MinHeight = 30;
                     gomb.Click += buttonClick;
-                    gomb.Click += szamlaloNovel;
+                    //gomb.Click += szamlaloNovel;
 
                     buttonGrid.Children.Add(gomb);
                     Grid.SetRow(gomb, i);
@@ -86,19 +90,60 @@ namespace LottoGame
                 if (Array.IndexOf(tippek,Convert.ToInt32(aktButton.Content))==-1)
                 {
                     tippek[szamlalo] = Convert.ToInt32(aktButton.Content);
+                    szamlalo++;
                 }
                 
             }
             //Csak debug!
             if (szamlalo>=hanySzam)
             {
+                mainwindow.buttonSorsolas.IsEnabled = true;
                 for (int i = 0; i < tippek.Length; i++)
                 {
                     Debug.WriteLine(tippek[i]);
+                   
                 }
+                Debug.WriteLine("Szamlalo:{0}", szamlalo);
             }
             
         }
+        private void sorsolasClick(object sender,RoutedEventArgs e)
+        {
+            Sorsolas();
+            EredmenyKiemeles();
+            mainwindow.buttonSorsolas.IsEnabled = false;
+        }
+
+        private void Sorsolas()
+        {
+
+            for (int i = 0; i < 5; i++)
+            {
+
+                var temp = nyeroszam.Next(1, 91);
+
+                //figyelni, hogy ne legyen ugyanaz a nyerőszám
+                while (Array.IndexOf(nyeroszamok, temp) > -1)
+                {
+                    temp = nyeroszam.Next(1, 91);
+                }
+                nyeroszamok[i] = temp;
+
+
+
+            }
+            Array.Sort(nyeroszamok);
+            //Csak debug
+            for (int i = 0; i < nyeroszamok.Length; i++)
+            {
+                Debug.WriteLine(nyeroszamok[i]);
+            }
+        }
+        private void EredmenyKiemeles()
+        {
+
+        }
+
         private void szamlaloNovel(object sender, RoutedEventArgs e)
         {
             szamlalo +=1;
